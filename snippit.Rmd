@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Load dependancies
+
+```{r}
+if (!require("dplyr")) install.packages("dplyr"); library(dplyr)
+if (!require("dbplyr")) install.packages("dbplyr") ; library(dbplyr)
+if (!require("RPostgreSQL")) install.packages("RPostgreSQL"); library(RPostgreSQL)
+if (!require("rstudioapi")) install.packages("rstudioapi"); library(rstudioapi)
+```
+
+
+Create connection
+
+```{r}
+con <- src_postgres(  RPostgreSQL::PostgreSQL(),
+                  host="",
+                  port = ,
+                  dbname="",
+                  user= askForPassword("Database username"),
+                  password= askForPassword("Database password"))
+
+```
+
+
+Create a view with sql query here
+
+```{sql connection=con}
+create view "newview" as (
+
+)
+```
+
+
+Load the data into R dataframe
+
+```{r}
+dat <- as.data.frame(tbl(con, build_sql('SELECT * FROM "newview"')))
+```
